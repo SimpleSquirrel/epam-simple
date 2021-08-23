@@ -1,0 +1,30 @@
+
+<div class="content-big">
+    <div class="form-big">
+        <div class="wrapper">
+            <div class="title-position">
+                <p class="title">Store</p>
+            </div>
+
+            <div class="search-container">
+                <label class="label" for="search">Search Games</label>
+                <div>
+                    <input class="input-field" placeholder="Search" type="text"/>
+                    <button class="button">Search</button>
+                </div>
+            </div>
+
+            <div class="content-filter">
+                <div class="game-container">
+                    <app-game
+                        *ngFor="let game of games"
+                        [game]="game"
+                    ></app-game>
+                </div>
+                <div class="filter">
+                    <p>FILTER</p>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

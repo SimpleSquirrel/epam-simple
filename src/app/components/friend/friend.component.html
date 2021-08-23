@@ -1,0 +1,9 @@
+<div class="friend">
+    <p class="label">{{friend.name}}</p>
+    <button class="button" *ngIf="yourFriends===true && requests===false" (click)="removeFriend()">Kill friend</button>
+    <div class="button-container" *ngIf="yourFriends===false && requests===true">
+        <button class="button" (click)="acceptRequest()">Accept</button>
+        <button class="button warn" (click)="declineRequest()">Decline</button>
+    </div>
+    <button class="button" *ngIf="yourFriends===false && requests===false" (click)="sendRequest()">Add friend</button>
+</div>

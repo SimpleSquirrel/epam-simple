@@ -1,0 +1,46 @@
+<div class="content-big">
+    <div class="form-big">
+        <div class="wrapper">
+            <div class="title-position">
+                <p class="title">Friends</p>
+            </div>
+            <div class="search-container">
+                <label class="label" for="search">Search Friends</label>
+                <div>
+                    <input class="input-field" placeholder="Search Friends" type="text"/>
+                    <button class="button">Search</button>
+                </div>
+            </div>
+            
+            <div class="container friends">
+                <p class="title">Friends:</p>
+                <app-friend
+                    *ngFor="let friend of friends"
+                    [friend]="friend"
+                    [yourFriends]="true"
+                    [requests]="false"
+                ></app-friend>
+            </div>  
+
+            <div class="container requests">
+                <p class="title">Requests:</p>
+                <app-friend
+                    *ngFor="let request of requests"
+                    [friend]="request"
+                    [yourFriends]="false"
+                    [requests]="true"
+                ></app-friend>
+            </div>
+
+            <div class="container requests">
+                <p class="title">All users:</p>
+                <app-friend        
+                    *ngFor="let user of users"
+                    [friend]="user"
+                    [yourFriends]="false"
+                    [requests]="false"
+                ></app-friend>
+            </div>
+        </div>
+    </div>
+</div>

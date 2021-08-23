@@ -1,0 +1,85 @@
+@import '../../shared/global.scss';
+
+.card{
+    width:272px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+.card-top{
+    height:150px;
+    background: #BDBCFF;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-bot{
+    height:162px;
+    background: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.game-name{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    margin-top:8px;
+    margin-left:8px;
+    
+    color: #FFFFFF;
+}
+
+.game-price{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom:8px;
+    margin-right:8px;
+    text-align: right;
+
+    color: #FFFFFF;
+}
+
+.description{
+    width:240px;
+    height:90px;
+    margin-top:16px;
+}
+
+.add{
+    width:248px;
+    margin-left:12px;
+    margin-right:12px;
+    margin-bottom:16px;
+    margin-top:8px;
+}
+
+.download{
+    width:119px;
+    margin-left:12px;
+    margin-bottom:16px;
+    margin-top:8px;
+}
+
+.share{
+    width:119px;
+    margin-right:12px;
+    margin-bottom:16px;
+    margin-top:8px;
+    background-color: white;
+    color:$accent;
+}
+
+.download+.share{
+    margin-left:10px
+}

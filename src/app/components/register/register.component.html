@@ -1,0 +1,17 @@
+<div class="content-small">
+    <div class="form-small">
+        <p class="title">Register</p>
+        <a class="label" routerLink="/login">Already regitered? Login!</a>
+        
+        <label class="label" for="email">Email</label>
+        <input class="input-field" type="text" placeholder="Email" formControlName="email" #emailSignup/>
+        
+        <label class="label" for="Password">Password</label>
+        <input class="input-field" type="password" placeholder="Password" formControlName="password" #passwordSignup/>
+        
+        <label class="label" for="Nickname">Nickname</label>
+        <input class="input-field" type="text" placeholder="Nickname" formControlName="name" #name/>
+        
+        <button class="button" type="submit" (click)="onSignup(emailSignup.value, passwordSignup.value, name.value)">Register</button>
+    </div>
+</div>

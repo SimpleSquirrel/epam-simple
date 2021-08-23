@@ -1,0 +1,27 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:3px solid darkgray;
+    background: white;
+    position:fixed;
+    width:100%;
+    
+    .nav{
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+    }
+
+    .link{
+        margin-left:1.5rem;
+        padding-left:1.5rem;
+    }
+
+    .link+.link{
+        border-left:1px solid black;
+    }
+}
+
+.active{
+    color:blueviolet;
+}

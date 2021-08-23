@@ -1,0 +1,19 @@
+<div class="content-big">
+    <div class="form-big">
+        <div class="wrapper">
+            <div class="title-position">
+                <p class="title">Library</p>
+            </div>
+        
+            <div class="big-form-content">
+                <div class="game-container">
+                    <app-game
+                        *ngFor="let game of games"
+                        [game]="game"
+                        [lib]="false"
+                    ></app-game>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

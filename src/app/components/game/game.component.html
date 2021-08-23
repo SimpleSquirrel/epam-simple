@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-top">
+        <p class="game-name">{{game.name}}</p>
+        <p class="game-price">{{game.id.substr(0,3)}}</p>
+    </div> 
+    <div class="card-bot">
+        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, ad?</p>
+        <button class="button add" *ngIf="lib===true; else dick"  (click)="addGame()">Add game</button>
+        <ng-template  #dick>
+            <div class="button-container">
+            <button class="button download" (click)="removeGame()">Download</button>
+            <button class="button share" (click)="removeGame()">Share</button>
+        </div>
+        </ng-template>
+    </div> 
+</div>
