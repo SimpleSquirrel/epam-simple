@@ -9,20 +9,35 @@
             <div class="search-container">
                 <label class="label" for="search">Search Games</label>
                 <div>
-                    <input class="input-field" placeholder="Search" type="text"/>
-                    <button class="button">Search</button>
+                    <input class="input-field" placeholder="Search" type="text" #searchSpec/>
+                    <button class="button" (click)="search(searchSpec.value)">Search</button>
                 </div>
             </div>
 
             <div class="content-filter">
-                <div class="game-container">
-                    <app-game
-                        *ngFor="let game of games"
-                        [game]="game"
-                    ></app-game>
+                <div class="container">
+                    <div class="game-container">
+                        <app-game
+                            *ngFor="let game of searchIsEmpty?(games$ | async):searched$ "
+                            [game]="game"
+                        ></app-game>
+                    </div>
                 </div>
+
                 <div class="filter">
-                    <p>FILTER</p>
+                    <p class="title small">Filter by price</p>
+                    <div class="row">
+                        <label for="volume" class="label">{{currentPrice}}</label>
+                        <input class="range" type="range" name="volume" value={{maxPrice}} ngModel="currentPrice" min={{minPrice}} max={{maxPrice}}>
+                        <label class="label" for="volume">Price</label>
+                    </div>
+
+                    <p class="title small">Filter by price</p>
+
+                    <div class="row" *ngFor="let item of filters">
+                        <input type="radio" name="check" ngModel="type" value="{{item.type}}" checked>
+                        <label class="label" for="check">{{item.type}}</label>
+                    </div>
                 </div>
             </div>  
         </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { Observable } from 'rxjs';
+import { GameService } from 'src/app/services/game.service';
+import { Game } from '../../shared/model'
 
 @Component({
   selector: 'app-store',
@@ -8,18 +9,43 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
-  games:any[] = [];
 
-  constructor(public firebaseService : FirebaseService, public afs:AngularFirestore) { 
-    this.afs.firestore.collection('games').get().then((q)=>
-    {
-      q.docs.map((doc)=>{
-        this.games.push({name:doc.data().name, id:doc.id})
-      })
-    })
+  games$:Observable<Game[]>= new Observable();
+  searched$:any;
+
+  searchIsEmpty:boolean=true;
+
+  filters = [{ type:"strategy"}, {type:"rpg"}, {type:"shooter"},{type:"any"}]
+
+  maxPrice:number=0;
+  minPrice:number=0;
+  price:number=0;
+
+  currentPrice:number=0;
+  type:string='Ya ne rabotayu, idi nahui';
+
+  constructor(public gameService:GameService) { 
+    
   }
 
   ngOnInit(): void {
+    this.games$ = this.gameService.getAllGames$();    
+    this.games$.forEach(item=>{
+      this.maxPrice = Math.max.apply(Math, item.map(x=>x.price))
+    })
+  }
+
+  search(spec:string){
+    this.searchIsEmpty = !spec?true:false;
+    this.games$.forEach(games=>{
+      this.searched$ = games.filter(
+      game=>game.name.includes(spec) 
+      // && 
+      // game.price<=this.currentPrice
+      // && 
+      // this.type==="any"?true:game.genre===this.type
+      )
+    })
     
   }
 }

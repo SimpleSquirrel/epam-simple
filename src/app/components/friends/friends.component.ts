@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { Observable } from 'rxjs';
+import { FriendService } from 'src/app/services/friend.service';
+import { Friend } from '../../shared/model'
 
 @Component({
   selector: 'app-friends',
@@ -9,35 +10,28 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class FriendsComponent implements OnInit {
 
-  friends:any[]=[];
-  requests:any[]=[];
-  users:any[]=[];
+  users$:Observable<Friend[]> = new Observable();
+  friends$:Observable<Friend[]> = new Observable();
+  requests$:Observable<Friend[]> = new Observable();
+  searched$:any
+  searchIsEmpty:boolean=true;
 
-  constructor(public firebaseService : FirebaseService, public afs:AngularFirestore) { }
+  constructor(public friendService:FriendService) { }
 
   ngOnInit(): void {
-    this.afs.firestore.collection('users')
-    .doc(this.firebaseService.getCurrentUserId())
-    .collection('friends').get().then((q)=>
-    {
-      q.docs.map((doc)=>{
-        this.friends.push({name:doc.data().name, id:doc.id})
-      })
-    })
+    this.users$ = this.friendService.getAllUsers$();
+    this.friends$ = this.friendService.getFriends$();
+    this.requests$ = this.friendService.getRequests$();
+  }
 
-    this.afs.firestore.collection('users').doc(this.firebaseService.getCurrentUserId()).collection('requests').get().then((q)=>
-    {
-      q.docs.map((doc)=>{
-        this.requests.push({name:doc.data().name, id:doc.id})
+  search(name:string){
+    if(name){
+      this.users$.forEach(users=>{
+        this.searched$ = users.filter(user=>user.name.includes(name))
       })
-    })
+      this.searchIsEmpty=false;
+    }
+    else this.searchIsEmpty=true;
 
-    this.afs.firestore.collection('users')
-    .get().then((q)=>
-    {
-      q.docs.map((doc)=>{
-        this.users.push({name:doc.data().name, id:doc.id})
-      })
-    })
   }
 }

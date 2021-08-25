@@ -9,14 +9,14 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class LoginComponent implements OnInit {
 
   @Output() isSignedIn = new EventEmitter<void>();
-  constructor(public firebaseService : FirebaseService) { }
+  constructor(public fs : FirebaseService) { }
 
   ngOnInit(): void {
     
   }
 
   async onSignin(email:string,password:string){
-    await this.firebaseService.signin(email,password)
+    await this.fs.signin(email,password)
     await this.isSignedIn.emit();
   }
 }

@@ -15,6 +15,7 @@
     .link{
         margin-left:1.5rem;
         padding-left:1.5rem;
+        text-decoration: none;
     }
 
     .link+.link{
@@ -24,4 +25,5 @@
 
 .active{
     color:blueviolet;
+    font-weight: 800;
 }
