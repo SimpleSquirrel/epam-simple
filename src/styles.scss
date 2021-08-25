@@ -32,11 +32,16 @@
         flex-direction: column;
         justify-content:flex-start;
         width: 80%;
-        height: 85%;
+        max-height: 85%;
+        min-height:85%;
         background: white;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 4px;
+        overflow-y: scroll;
+    }::-webkit-scrollbar {
+        visibility: hidden;
     }
+    
 } 
 
 body{
@@ -49,6 +54,8 @@ body{
     height: 20px;
     padding-left:5px;
     margin-top:20px;
+
+    vertical-align: middle;
 
     font-family: Roboto;
     font-style: normal;
@@ -122,6 +129,7 @@ body{
          margin-left:1%;
          width:8%;
      }
+     
 }
 
 .wrapper{
@@ -143,3 +151,6 @@ body{
     flex-direction: row;
 }
 
+.bought{
+    background: rgb(76, 204, 76);
+}

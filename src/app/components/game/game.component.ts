@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { FindValueSubscriber } from 'rxjs/internal/operators/find';
+import { GameService } from 'src/app/services/game.service';
 import { Game } from 'src/app/shared/model';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-game',
@@ -8,20 +10,29 @@ import { Game } from 'src/app/shared/model';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  
   @Input() lib:boolean = true;
-  @Input() game:any;
+  @Input() game:Game={id:'',name:'',price:0,description:''};
+  bought:boolean = false;
 
-  constructor(public firebaseService:FirebaseService) { }
+  constructor(public gameService:GameService) { }
 
-  ngOnInit(): void {
+  ngOnInit():void {
+    this.gameService.getUserGames$().forEach(item=>{
+      item.filter(game=>{
+        if(game.id === this.game.id)
+        {
+          this.bought=true;
+          return;
+        }
+      })
+    })
   }
 
-  addGame()
-  {
-    this.firebaseService.addGame(this.game.id)
+  addGame():void {
+    this.gameService.addGame(this.game)
   }
-  removeGame()
-  {
-    this.firebaseService.removeGame(this.game.id)
+  removeGame():void {
+    this.gameService.removeGame(this.game)
   }
 }

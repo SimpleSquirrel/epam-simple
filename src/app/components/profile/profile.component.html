@@ -1,20 +1,17 @@
 <div class="content-small">
     <div class="form-small">
         <p class="title">Profile</p>
-
-        <label class="label" for="id">ID</label>
-        <input class="input-field" [value] = "userData.id" disabled="true" type="text" placeholder="ID" formControlName="id" #id/>
         
         <label class="label" for="name">Name</label>
-        <input class="input-field" [value] = "userData.name"type="text" placeholder="Name" formControlName="name" #name/>
+        <input class="input-field" [value] = "userData$.name"type="text" placeholder="Name" formControlName="name" #name/>
         
         <label class="label" for="age">Age</label>
-        <input class="input-field" [value] = "userData.age" type="text" placeholder="Age" formControlName="age" #age/>
+        <input class="input-field" [value] = "userData$.age" type="text" placeholder="Age" formControlName="age" #age/>
         
         <label class="label" for="email">Email</label>
-        <input class="input-field" [value] = "userData.email" disabled="true" type="text" placeholder="Email" formControlName="email" #email/>
+        <input class="input-field" [value] = "userData$.email" disabled="true" type="text" placeholder="Email" formControlName="email" #email/>
         
-        <button class="button" (click)="updateData(name.value, +age.value, id.value, email.value)">Save</button>
+        <button class="button" (click)="updateProfile(name.value, +age.value)">Save</button>
         <button class="logout-button" (click)="logout()"><img class="logout-image" src="https://static.thenounproject.com/png/144676-200.png" alt=""></button>
     </div>
 </div>

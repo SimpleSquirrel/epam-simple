@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,33 +9,23 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class ProfileComponent implements OnInit {
 
-  userData:any;
+  userData$:any;
 
   @Output() isLogout = new EventEmitter<void>();
-  constructor(public firebaseService:FirebaseService, public afs:AngularFirestore) { }
+  constructor(
+    public fs:FirebaseService, 
+    public userService:UserService) { }
 
   ngOnInit(): void {
-    const user = localStorage.getItem('user')
-    if(user!==null)
-    {
-      const id = this.firebaseService.getCurrentUserId();
-      this.afs.firestore.collection('users').doc(id).get().then((q)=>{
-      this.userData = q.data()
-    })
-    }
+    this.userService.getCurrentUserInfo$().then(data=>{this.userData$ = data})
   }
 
   logout(){
-    this.firebaseService.logout();
+    this.fs.logout();
     this.isLogout.emit();
   }
 
-  updateData(name:string,age:number,id:string,email:string){
-    this.firebaseService.setData({
-      name:name,
-      age:age,
-      id:id,
-      email:email
-    })
+  updateProfile(name:string, age:number){
+    this.userData$ = this.userService.updateProfile$({name:name,age:age})
   }
 }

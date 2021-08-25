@@ -5,12 +5,14 @@
 .game-container{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
+    min-width:75%;
 }
 
 .content-filter{
     display:flex;
+    justify-content: space-between;
 }
 
 .title{
@@ -22,3 +24,38 @@
 app-game{
     margin-bottom:25px;
 }
+
+body{
+    overflow-y: scroll;
+}
+
+.filter{
+    display:flex;
+    flex-direction: column;
+    min-width: 25%;
+    max-width: 25%;
+    border-left: 3px solid black;
+    justify-content: stretch;
+
+    .row{
+        display:flex;
+        align-items:stretch;
+
+        margin-left:20px;
+        margin-top:15px;
+        .label{
+            margin:0;
+        }
+    }
+}
+
+.small{
+    font-size:18px;
+    margin-left:20px;
+    margin-top:15px;
+}
+
+
+
+
+

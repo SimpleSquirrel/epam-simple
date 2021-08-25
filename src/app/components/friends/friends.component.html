@@ -7,40 +7,43 @@
             <div class="search-container">
                 <label class="label" for="search">Search Friends</label>
                 <div>
-                    <input class="input-field" placeholder="Search Friends" type="text"/>
-                    <button class="button">Search</button>
+                    <input class="input-field" placeholder="Search Friends" type="text" #searchSpec>
+                    <button class="button" type="submit" (click)="search(searchSpec.value)">Search</button>
+                </div>
+            </div>
+            <div class="container" *ngIf="searchIsEmpty===true; else users">
+                <div class="container friends">
+                    <p class="title">Friends:</p>
+                    <app-friend
+                        *ngFor="let friend of friends$ | async"
+                        [friend]="friend"
+                        [yourFriends]="true"
+                        [requests]="false"
+                    ></app-friend>
+                </div>  
+
+                <div class="container requests">
+                    <p class="title">Requests:</p>
+                    <app-friend
+                        *ngFor="let request of requests$ | async"
+                        [friend]="request"
+                        [yourFriends]="false"
+                        [requests]="true"
+                    ></app-friend>
                 </div>
             </div>
             
-            <div class="container friends">
-                <p class="title">Friends:</p>
-                <app-friend
-                    *ngFor="let friend of friends"
-                    [friend]="friend"
-                    [yourFriends]="true"
-                    [requests]="false"
-                ></app-friend>
-            </div>  
-
-            <div class="container requests">
-                <p class="title">Requests:</p>
-                <app-friend
-                    *ngFor="let request of requests"
-                    [friend]="request"
-                    [yourFriends]="false"
-                    [requests]="true"
-                ></app-friend>
-            </div>
-
-            <div class="container requests">
-                <p class="title">All users:</p>
-                <app-friend        
-                    *ngFor="let user of users"
-                    [friend]="user"
-                    [yourFriends]="false"
-                    [requests]="false"
-                ></app-friend>
-            </div>
+            <ng-template #users>
+                <div class="container requests">
+                    <p class="title">Search:</p>
+                    <app-friend        
+                        *ngFor="let ser of searched$"
+                        [friend]="ser"
+                        [yourFriends]="false"
+                        [requests]="false"
+                    ></app-friend>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

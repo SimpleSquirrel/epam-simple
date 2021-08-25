@@ -1,27 +1,22 @@
-export interface User 
-{
+export interface User {
     id?:string,
     email?:string,
-    name?:string,
-    age?:number,
-    password?:string,
-    friends?:User[],
-    games?:Game[],
-    requests?:FriendRequest[]
-}
-
-export interface Game
-{
-    id?:string,
     name:string,
-    description?:string,
-    rating?:number
-    genre?:string,
-    price?:number,
-    author?:string,
+    age:number,
+    friends?:Friend[],
+    games?:Game[],
+    requests?:Friend[]
 }
 
-export interface FriendRequest
-{
-    whoSendId:string,
+export interface Game{
+    id:string,
+    name:string,
+    price:number,
+    description:string,
+    genre?:string
+}
+
+export interface Friend{
+    id:string,
+    name:string
 }

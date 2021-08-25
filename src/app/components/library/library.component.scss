@@ -2,8 +2,7 @@
     margin-top:10px;
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
-    
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -15,4 +14,8 @@ app-game{
     margin:0;
     text-align: left;
     vertical-align: middle;
+}
+
+body{
+    overflow-y: scroll;
 }

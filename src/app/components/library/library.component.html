@@ -8,7 +8,7 @@
             <div class="big-form-content">
                 <div class="game-container">
                     <app-game
-                        *ngFor="let game of games"
+                        *ngFor="let game of games$ | async"
                         [game]="game"
                         [lib]="false"
                     ></app-game>

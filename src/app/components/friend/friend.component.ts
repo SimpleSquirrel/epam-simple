@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { FriendService } from 'src/app/services/friend.service';
+import { Friend } from 'src/app/shared/model';
 
 @Component({
   selector: 'app-friend',
@@ -10,28 +9,28 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class FriendComponent implements OnInit {
 
-  @Input() friend:any;
+  @Input() friend:Friend = {name:'',id:''};
   @Input() yourFriends:boolean = true;
   @Input() requests:boolean = false;
 
-  constructor(public firebaseService : FirebaseService, public afs:AngularFirestore) { }
+  constructor(public friendService:FriendService) { }
 
   ngOnInit(): void {
     
   }
 
-  removeFriend(){
-    this.firebaseService.removeFriend(this.friend.id)
+   removeFriend(){
+     this.friendService.removeFriend(this.friend)
   }
 
-  acceptRequest(){
-    this.firebaseService.acceptRequest(this.friend.id)
+   acceptRequest(){
+     this.friendService.acceptRequest(this.friend)
   }
 
-  declineRequest(){
-    this.firebaseService.declineRequest(this.friend.id)
+   declineRequest(){
+     this.friendService.declineRequest(this.friend)
   }
-  sendRequest(){
-    this.firebaseService.sendRequest(this.friend.id)
+   sendRequest(){
+     this.friendService.sendRequest(this.friend)
   }
 }

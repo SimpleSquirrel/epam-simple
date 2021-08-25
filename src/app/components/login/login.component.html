@@ -4,10 +4,10 @@
         <a class="label" routerLink="/register">Dont have an account? Register!</a>
         
         <label class="label" for="email">Email</label>
-        <input class="input-field" type="text" placeholder="Email" formControlName="email" #email/>
+        <input class="input-field" type="text" placeholder="Email" #email/>
         
         <label class="label" for="Password">Password</label>
-        <input class="input-field" type="password" placeholder="Password" formControlName="password" #password/>
+        <input class="input-field" type="password" placeholder="Password" #password/>
         
         <button class="button" type="submit" (click)="onSignin(email.value, password.value)">Log in</button>
     </div>
